@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 
-	"name": "WP Admin Bar Hider",
-	"version": "0.1",
-	"description": "One-click, per-domain WP admin bar removal!",
+	"name": "Wordpress Admin Bar Control",
+	"version": "1.0.0",
+	"description": "One-click, per-domain WP admin bar hiding. Great for those who often switch between design and content editing.",
 	
 	"browser_action": {
 		"default_icon": {
