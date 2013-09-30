@@ -1,4 +1,4 @@
-<h1>Wordpress Admin Bar Control</h1>
+<h1 style="text-align:center;"><img src="https://raw.github.com/Swingline0/wpAdminBarHide/master/img/icon128.png" /><br />Wordpress Admin Bar Control</h1>
 
 <strong>One-click, per-domain WP admin bar hiding. Great for those who often switch between design and content editing.</strong>
 
