@@ -1,4 +1,4 @@
-// Saves options to localStorage.
+  // Saves options to localStorage.
 function save_options() {
   var select = document.getElementById("color");
   var color = select.children[select.selectedIndex].value;
