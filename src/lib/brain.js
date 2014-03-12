@@ -71,14 +71,20 @@ var wpAdminHide = {
 		if(state){
 			//Change Icon
 					chrome.browserAction.setIcon({
-							"path": "img/icon19_1.png"
+							path: {
+								"19": "img/icon19_1.png",
+								"38": "img/icon38_1.png"
+							}
 						}, function () {
 							this.active = true;
 						});
 		}
 		else{
 			chrome.browserAction.setIcon({
-						"path": "img/icon19_0.png"
+						path: {
+							"19": "img/icon19_0.png",
+							"38": "img/icon38_0.png"
+						}
 					}, function () {
 						this.active = false;
 					});
