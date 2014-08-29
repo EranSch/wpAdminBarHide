@@ -3,9 +3,8 @@
 
 	"name": "Wordpress Admin Bar Control",
 	"short_name": "WP Admin Bar Hider",
-	"version": "1.1.0",
+	"version": "1.0.2",
 	"description": "Hide & show the admin bar with one easy click!",
-	"options_page": "options.html",
 	
 	"browser_action": {
 		"default_icon": {
