@@ -1,32 +1,42 @@
 var wpAdminHide = {
 
   /*
-   * Adds a domain name to localStorage
+   * Adds a domain name to Chrome storage
    */
   addD: function(d) {
-    localStorage[d] = true;
-    console.log(d + " added.");
+    var save = {};
+    save[d] = true;
+    chrome.storage.sync.set(save, function(result) {
+      console.log(d, "added to storage, admin bar removed.");
+    });
   },
 
   /*
-   * Removes a domain from localStorage
+   * Removes a domain from Chrome storage
    */
   remD: function(d) {
-    localStorage.removeItem(d);
-    console.log(d + " removed.");
+    chrome.storage.sync.remove(d, function() {
+      console.log(d, "removed from storage, admin bar restored.");
+    });
   },
 
   /*
-   * Checks for the existence of a localStorage item that matches the domain passed as the first
+   * Checks for the existence of a Chrome storage item that matches the domain passed as the first
    * argument. Second and third arguments are what to do if there is or isn't a match, respectively.
    */
   chkD: function(tabId, pass, fail) {
     chrome.tabs.get(tabId, function(tab) {
-      d = tab.url.split("/")[2];
-      if (localStorage[d]) {
-        pass(d);
-      } else {
-        fail(d);
+      if(tab.url.indexOf('chrome') == 0){
+        console.error('can\'t run on chrome pages, sorry :(');
+      }else{
+        d = tab.url.split("/")[2];
+        chrome.storage.sync.get(d, function(result){
+          if (result[d]) {
+            pass(d);
+          } else {
+            fail(d);
+          }
+        });
       }
     });
   },
@@ -79,11 +89,12 @@ var wpAdminHide = {
       });
     }
   }
+
 };
 
 /* 
- * Listener for browser action button clickage. Checks the active tab against localstorage and toggles
- * the state of the plugin accordingly
+ * Listener for browser action button clickage. Checks the active tab against Chrome storage
+ * and toggles the state of the plugin accordingly.
  */
 chrome.browserAction.onClicked.addListener(function(tab) {
   wpAdminHide.chkD(
@@ -101,7 +112,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 /*
  * Keep the icon up to date based on whether or not the domain exists in local storage.
- * Going to assum that the hiding was handled on tab load so this is just for keeping up
+ * Going to assume that the hiding was handled on tab load so this is just for keeping up
  * appearances.
  */
 chrome.tabs.onActivated.addListener(function(tab) {
