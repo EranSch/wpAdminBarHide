@@ -50,7 +50,6 @@ var wpAdminHide = {
       },
       function() {
         wpAdminHide.toggleIcon(true);
-        console.log("Bar removed!");
       });
   },
 
@@ -63,9 +62,7 @@ var wpAdminHide = {
       },
       function() {
         wpAdminHide.toggleIcon(false);
-        console.log("Bar restored!");
       });
-
   },
 
   /*
