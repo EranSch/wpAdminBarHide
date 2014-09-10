@@ -134,6 +134,10 @@ chrome.windows.onFocusChanged.addListener(function(windowId){
   });
 });
 
+/**
+ * This listener fires each time the user loads a new page. If the domain is recognized
+ * then the bar removal script is fired.
+ */
 chrome.tabs.onUpdated.addListener(function(tabId, data, tab) {
   wpAdminHide.chkD(
     tabId,
