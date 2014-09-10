@@ -112,15 +112,26 @@ chrome.browserAction.onClicked.addListener(function(tab) {
  * Going to assume that the hiding was handled on tab load so this is just for keeping up
  * appearances.
  */
-chrome.tabs.onActivated.addListener(function(tab) {
+var updateBrowserIcon = function(tab) {
+  var id = tab.tabId || tab.id;
   wpAdminHide.chkD(
-    tab.tabId,
+    id,
     function() {
       wpAdminHide.toggleIcon(true);
     },
     function() {
       wpAdminHide.toggleIcon(false);
     });
+};
+
+// Update icon when tab is changed within a single window
+chrome.tabs.onActivated.addListener(updateBrowserIcon);
+
+// Update icon when window focus changes
+chrome.windows.onFocusChanged.addListener(function(windowId){
+  chrome.tabs.query({windowId: windowId, active: true}, function(tab){
+    updateBrowserIcon(tab['0']);
+  });
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, data, tab) {
