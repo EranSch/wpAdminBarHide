@@ -44,7 +44,11 @@ var wpAdminHide = {
   removeBar: function(tabId) {
     chrome.tabs.executeScript(
       tabId, {
-        code: "document.getElementById('wpadminbar').style.display='none';document.getElementsByTagName('html')[0].style.setProperty('margin-top', '0px', 'important');document.getElementsByTagName('html')[0].style.setProperty('padding-top', '0px', 'important');",
+        code: [
+          "document.getElementById('wpadminbar').style.display = 'none';",
+          "document.getElementsByTagName('html')[0].style.setProperty('margin-top', '0px', 'important');",
+          "document.getElementsByTagName('html')[0].style.setProperty('padding-top', '0px', 'important');"
+        ].join(''),
         runAt: "document_idle",
         allFrames: true
       },
@@ -56,7 +60,10 @@ var wpAdminHide = {
   restoreBar: function(tabId) {
     chrome.tabs.executeScript(
       tabId, {
-        code: "document.getElementById('wpadminbar').removeAttribute('style');document.getElementsByTagName('html')[0].removeAttribute('style');",
+        code: [
+          "document.getElementById('wpadminbar').removeAttribute('style');",
+          "document.getElementsByTagName('html')[0].removeAttribute('style');"
+        ].join(''),
         runAt: "document_idle",
         allFrames: true
       },
