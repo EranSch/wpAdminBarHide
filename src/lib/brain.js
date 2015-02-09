@@ -47,7 +47,8 @@ var wpAdminHide = {
         code: [
           "document.getElementById('wpadminbar').style.display = 'none';",
           "document.getElementsByTagName('html')[0].style.setProperty('margin-top', '0px', 'important');",
-          "document.getElementsByTagName('html')[0].style.setProperty('padding-top', '0px', 'important');"
+          "document.getElementsByTagName('html')[0].style.setProperty('padding-top', '0px', 'important');",
+          "document.getElementsByTagName('body')[0].classList.remove('admin-bar');"
         ].join(''),
         runAt: "document_idle",
         allFrames: true
@@ -62,7 +63,8 @@ var wpAdminHide = {
       tabId, {
         code: [
           "document.getElementById('wpadminbar').removeAttribute('style');",
-          "document.getElementsByTagName('html')[0].removeAttribute('style');"
+          "document.getElementsByTagName('html')[0].removeAttribute('style');",
+          "document.getElementsByTagName('body')[0].classList.add('admin-bar');"
         ].join(''),
         runAt: "document_idle",
         allFrames: true
